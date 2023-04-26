@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*************************************************************
+ * Clase Weather Objs
+ * Contiene la materialización de los datos obtenidos después
+ * de una llamada a a la API de OpenWeatherMap
+ * Después de deserializar el objeto que se recibe de la llamada
+ * se guardan en esta estructura
+ * ***********************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 

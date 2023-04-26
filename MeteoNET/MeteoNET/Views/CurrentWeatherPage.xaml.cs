@@ -1,4 +1,13 @@
-﻿using MeteoNET.Helper;
+﻿/***************************************************************
+ * Ventana principal de la aplicación donde se muestran todos los
+ * datos recibidos de la llamada a la API del tiempo presente u
+ * de la predicción a 5 días, aunque solo se muestran, por ahora,
+ * 4 días por motivos de espacio. Se pretende dejar a futuro la
+ * creación de una ScrollView que recoja los datos de predicción
+ * a 16 días y que el usuario pueda visualizar a voluntad.
+ * *************************************************************/
+
+using MeteoNET.Helper;
 using MeteoNET.Models;
 using Newtonsoft.Json;
 using System;

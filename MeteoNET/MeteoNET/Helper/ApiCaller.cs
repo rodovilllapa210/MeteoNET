@@ -1,4 +1,9 @@
-﻿using System;
+﻿/**************************************************************
+ * Desde esta clase se crea un cliente asíncrono que será el que
+ * realice las llamadas a la API de Opne WeatherMap
+ * ************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
