@@ -3,4 +3,10 @@
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
     <application android:label="MeteoNET.Android" android:usesCleartextTraffic="true" android:theme="@style/MainTheme"></application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.harware.location" android:required="false" />
+    <uses-permission android:name="android.harware.location.gps" android:required="false" />
+    <uses-permission android:name="android.harware.location.network" android:required="false" />
 </manifest>

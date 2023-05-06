@@ -12,10 +12,13 @@ using MeteoNET.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,17 +28,134 @@ namespace MeteoNET.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CurrentWeatherPage : ContentPage
     {
-        private string Location { get; set; } = "Madrid";
-        
+
+        private async void GetCoordinates()
+        {
+            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            var location = await Geolocation.GetLocationAsync(request);
+
+            if(location != null)
+            {
+                Location = await GetCity(location);
+
+                GetWeatherInfo();
+            }
+        }
+
+        private async Task<string> GetCity(Location location)
+        {
+            var places = await Geocoding.GetPlacemarksAsync(location);
+            var currentPlace = places?.FirstOrDefault();
+
+            if(currentPlace !=null)
+                return $"{currentPlace.Locality}";
+
+            return null;
+        }
+
         public CurrentWeatherPage()
         {
             InitializeComponent();
+            GetCoordinates();
+
+        }
+        private string _Location;
+        public string Location
+        {
+            get
+            {
+                return _Location;
+            }
+            set
+            {
+                if (_Location != value)
+                {
+                    _Location = value;
+                }
+            }
+        }
+
+        public void OnSearchButtonPressed(object sender, EventArgs e)
+        {
+            Location = searchBar.Text;
+
             GetWeatherInfo();
         }
-        
+
+        private string _Unidades = "metric";
+        public string Unidades
+        {
+            get
+            {
+                return _Unidades;
+            }
+            set
+            {
+                if (_Unidades != value)
+                {
+                    _Unidades = value;
+                }
+            }
+        }
+
+        private void OnPickerUnitsItemSelected(object sender, EventArgs e)
+        {
+
+            string units = pickerUnits.SelectedItem as string;
+            switch (units)
+            {
+                case "Imperial":
+                    Unidades = "imperial";
+                    break;
+                case "Estándar":
+                    Unidades = "standard";
+                    break;
+                default:
+                    Unidades = "metric";
+                    break;
+            }
+
+            GetWeatherInfo();
+
+        }
+
+        private string _Language = "sp";
+        public string Language
+        {
+            get
+            {
+                return _Language;
+            }
+            set
+            {
+                if (_Language != value)
+                {
+                    _Language = value;
+                }
+            }
+        }
+
+        private void OnPickerLanguageItemSelected(object sender, EventArgs e)
+        {
+
+            string language = pickerLanguage.SelectedItem as string;
+            switch (language)
+            {
+                case "Inglés":
+                    Language = "en";
+                    break;
+                default:
+                    Language = "sp";
+                    break;
+            }
+
+            GetWeatherInfo();
+
+        }
+
         private async void GetWeatherInfo()
         {
-            var url = $"http://api.openweathermap.org/data/2.5/weather?q={Location}&lang=sp&appid=216b2e8f3ecdb26dfafd546daf7e506f&units=metric";
+            var url = $"http://api.openweathermap.org/data/2.5/weather?q={_Location}&lang={_Language}&appid=216b2e8f3ecdb26dfafd546daf7e506f&units={_Unidades}";
 
             var result = await ApiCaller.Get(url);
 
