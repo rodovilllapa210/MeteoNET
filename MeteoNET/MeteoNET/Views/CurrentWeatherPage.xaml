@@ -4,7 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="El tiempo"
              x:Class="MeteoNET.Views.CurrentWeatherPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="menu.png" Clicked="OnMenuClicked"/>
+    </ContentPage.ToolbarItems>
 
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
         <Grid.RowDefinitions>
@@ -19,48 +24,48 @@
             <BoxView Grid.RowSpan="2" BackgroundColor="#7585BA" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <Image Aspect="AspectFill" Grid.RowSpan="2" Source="overlay.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Label Text="Medidas" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
-                <Picker x:Name="pickerUnits"
-                    Title="Sist. Métrico"
-                    TitleColor="White"
-                    FontSize="Medium"
-                    TextColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    SelectedIndexChanged="OnPickerUnitsItemSelected">
+                <!--StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Medidas" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                    <Picker x:Name="pickerUnits"
+                        Title="Sist. Métrico"
+                        TitleColor="White"
+                        FontSize="Medium"
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        SelectedIndexChanged="OnPickerUnitsItemSelected">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Estándar</x:String>
+                                    <x:String>Sist. Métrico</x:String>
+                                    <x:String>Imperial</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    <Label Text="Idioma" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                    <Picker x:Name="pickerLanguage"
+                        Title="Español"
+                        TitleColor="White"
+                        FontSize="Medium"
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        SelectedIndexChanged="OnPickerLanguageItemSelected">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>Estándar</x:String>
-                                <x:String>Sist. Métrico</x:String>
-                                <x:String>Imperial</x:String>
+                                <x:String>Español</x:String>
+                                <x:String>Inglés</x:String>
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
-                <Label Text="Idioma" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
-                <Picker x:Name="pickerLanguage"
-                    Title="Español"
-                    TitleColor="White"
-                    FontSize="Medium"
-                    TextColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    SelectedIndexChanged="OnPickerLanguageItemSelected">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Español</x:String>
-                            <x:String>Inglés</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-            </StackLayout>
+                </StackLayout-->
                 <SearchBar x:Name="searchBar"
-                TextColor="White"
-                Placeholder="Tu ubicación"
-                PlaceholderColor="White"
-                HorizontalOptions="FillAndExpand"
-                SearchCommand="{Binding SearchButtonPressed}"
-                SearchButtonPressed="OnSearchButtonPressed"
-                SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}">
-            </SearchBar>
+                    TextColor="White"
+                    Placeholder="Tu ubicación"
+                    PlaceholderColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    SearchCommand="{Binding SearchButtonPressed}"
+                    SearchButtonPressed="OnSearchButtonPressed"
+                    SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}">
+                </SearchBar>
             </StackLayout>
             <Grid Grid.Row="1">
                 <StackLayout Spacing="20">

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MeteoNET.Views.FavoritosPage">
+    <StackLayout>
+        <Button Text="Borrar todo" Clicked="BorrarTodo_Clicked"/>
+        <ListView x:Name="listaLocalizaciones">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Ciudad}" FontSize="18"/>
+                            <Label Text="{Binding FechaConsulta}" FontSize="12"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
